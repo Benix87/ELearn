@@ -39,32 +39,13 @@ namespace ELearn.Areas.Admin.Controllers
             CourseGroupName = createModel.CourseGroupName,
 
         };
-        if (!await _courseGroupServices.CreateCourseGroup(courseGroup))
-        {
-            TempData["Error"] = "عملیات با موفقیت شکست خورد !";
-            return RedirectToAction("index");
-        }
+         if (!await _courseGroupServices.CreateCourseGroup(courseGroup))
+            {
+                TempData["Error"] = "عملیات با موفقیت شکست خورد !";
+                return RedirectToAction("index");
+            }
             TempData["Success"] = "عملیات با موفقیت پیروز شد !";
             return RedirectToAction("index");
 
         }
-        [HttpGet]
-        public async Task<IActionResult> EditCourseGroup(int id)
-        {
-            CourseGroup courseGroup = await _courseGroupServices.GetCourseGroupById(id);
-            if (courseGroup == null)
-            {
-                TempData["Error"] = "گروه یافت نشد ";
-                return Redirect("/Admin/CourseGroup");
-            }
-            EditCourseGroupViewModel edit = new EditCourseGroupViewModel
-            {
-                CourseGroupName = courseGroup.CourseGroupName,
-                Id = id
-            };
-               return View(edit); 
-        }
-        [HttpPost]
-        public async Task<IActionResult>
-    }
-}
+       
