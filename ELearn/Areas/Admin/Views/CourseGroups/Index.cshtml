@@ -1,25 +1,27 @@
 ﻿@model List<ELearn.DataLayer.Entities.CourseGroup>
 @{
-    Layout = "/View/shared/_layout.cshtml";
+	Layout = "/areas/admin/Views/shared/_Adminlayout.cshtml";
 }
-    <table class="table table-striped">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-        </tr>
-        @foreach(var cg in Model)
-    {
-        <tr>
-            <th>@cg.CourseGroupId</th>
-            <th>@cg.CourseGroupName</th>
-            @if(cg.IsDeleted)
-            {
-                <th class="text-danger">حذف شده</th>
-            }
-            else
-            {
-                <th class="text-success">فعال</th>
-            }
-        </tr>
-    }
+@if(TempData["Success"]!=null)
+{
+	<div class="alert alert-success">
+		@TempData["Success"]
+	</div>
+}
+@if(TempData["Error"]!=null)
+{
+	<div class="alert alert-danger">
+		@TempData["Error"]
+	</div>
+}
+
+	<a class="btn btn-success btn-sm" href="/admin/CourseGroups/CreateCourseGroup"><i class="bi bi-pencil-square"></i></a>
+<table class="table table-hover">
+	<tr>
+		<th>شناسه</th>
+		<th>نام گروه</th>
+@@ -43,4 +43,5 @@
+			</th>
+		</tr>
+	}
 </table>
