@@ -71,6 +71,10 @@ namespace ELearn.Core.Services
                 return false;
             }
         }
+         public async Task<int> GetCourseGroupCounts()
+        {
+            return await _context.Courses.CountAsync();
+        }
 
         public async Task<CourseGroup> GetCourseGroupById(int id)
         {
@@ -81,5 +85,6 @@ namespace ELearn.Core.Services
             }
             return courseGroup;
         }
+       
     }
 }
